@@ -8,26 +8,44 @@
     This is a page for a simple Tic Tac Toe game.
     <table>
       <tr>
-        <td id="c0"><div class="cell" onclick="placeX('c0')"></div></td>
-        <td id="c1"><div class="cell" onclick="placeX('c1')"></div></td>
-        <td id="c2"><div class="cell" onclick="placeX('c2')"></div></td>
+        <td id="c0"><div class="cell" onclick="makeTurn('c0')"></div></td>
+        <td id="c1"><div class="cell" onclick="makeTurn('c1')"></div></td>
+        <td id="c2"><div class="cell" onclick="makeTurn('c2')"></div></td>
       </tr>
       <tr>
-        <td id="c3"><div class="cell" onclick="placeX('c3')"></div></td> 
-        <td id="c4"><div class="cell" onclick="placeX('c4')"></div></td>
-        <td id="c5"><div class="cell" onclick="placeX('c5')"></div></td>
+        <td id="c3"><div class="cell" onclick="makeTurn('c3')"></div></td> 
+        <td id="c4"><div class="cell" onclick="makeTurn('c4')"></div></td>
+        <td id="c5"><div class="cell" onclick="makeTurn('c5')"></div></td>
       </tr>
       <tr>
-        <td id="c6"><div class="cell" onclick="placeX('c6')"></div></td>
-        <td id="c7"><div class="cell" onclick="placeX('c7')"></div></td>
-        <td id="c8"><div class="cell" onclick="placeX('c8')"></div></td>
+        <td id="c6"><div class="cell" onclick="makeTurn('c6')"></div></td>
+        <td id="c7"><div class="cell" onclick="makeTurn('c7')"></div></td>
+        <td id="c8"><div class="cell" onclick="makeTurn('c8')"></div></td>
       </tr>
     </table>
     <script>
       let currentPlayer = "X";
 
+      function makeTurn(cell) {
+        if (currentPlayer == "X") {
+          placeX(cell);
+        } else {
+          placeO(cell);
+        }
+
+        if (currentPlayer == "X") {
+          currentPlayer = "O";
+        } else {
+          currentPlayer = "X";
+        }
+      }
+
       function placeX(cell) {
         document.getElementById(cell).className = "cell cross";
+      }
+
+      function placeO(cell) {
+        document.getElementById(cell).classname = "cell ring";
       }
     </script>
   </body>
