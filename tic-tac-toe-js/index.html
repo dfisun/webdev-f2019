@@ -29,13 +29,9 @@
       function makeTurn(cell) {
         if (currentPlayer == "X") {
           placeX(cell);
-        } else {
-          placeO(cell);
-        }
-
-        if (currentPlayer == "X") {
           currentPlayer = "O";
         } else {
+          placeO(cell);
           currentPlayer = "X";
         }
       }
