@@ -27,13 +27,19 @@
       let currentPlayer = "X";
 
       function makeTurn(cell) {
-        if (currentPlayer == "X") {
-          placeX(cell);
-          currentPlayer = "O";
-        } else {
-          placeO(cell);
-          currentPlayer = "X";
+        if (isEmptyCell(cell)) {
+          if (currentPlayer == "X") {
+            placeX(cell);
+            currentPlayer = "O";
+          } else {
+            placeO(cell);
+            currentPlayer = "X";
+          }
         }
+      }
+
+      function isEmptyCell(cell) {
+        return document.getElementById(cell).className == 'cell';
       }
 
       function placeX(cell) {
