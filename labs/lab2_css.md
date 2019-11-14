@@ -20,3 +20,6 @@
 
 ## Описание действий
 Подробное описание действий можно найти [здесь](https://dfisun.github.io/webdev-w2018/labs/webdev-w2018_lab_2_css.pdf) (в руководстве имеется дополнительный пункт под номером 10, который следует проигнорировать).
+
+## Рекомендуемые материалы
+[MDN Tutorials: CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS)
