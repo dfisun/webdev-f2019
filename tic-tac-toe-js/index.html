@@ -8,24 +8,27 @@
     This is a page for a simple Tic Tac Toe game.
     <table>
       <tr>
-        <td><div id="c0" class="cell" onclick="makeTurn('c0')"></div></td>
-        <td><div id="c1" class="cell" onclick="makeTurn('c1')"></div></td>
-        <td><div id="c2" class="cell" onclick="makeTurn('c2')"></div></td>
+        <td><div id="c00" class="cell" onclick="makeTurn('c0')"></div></td>
+        <td><div id="c01" class="cell" onclick="makeTurn('c1')"></div></td>
+        <td><div id="c02" class="cell" onclick="makeTurn('c2')"></div></td>
       </tr>
       <tr>
-        <td><div id="c3" class="cell" onclick="makeTurn('c3')"></div></td> 
-        <td><div id="c4" class="cell" onclick="makeTurn('c4')"></div></td>
-        <td><div id="c5" class="cell" onclick="makeTurn('c5')"></div></td>
+        <td><div id="c10" class="cell" onclick="makeTurn('c3')"></div></td> 
+        <td><div id="c11" class="cell" onclick="makeTurn('c4')"></div></td>
+        <td><div id="c12" class="cell" onclick="makeTurn('c5')"></div></td>
       </tr>
       <tr>
-        <td><div id="c6" class="cell" onclick="makeTurn('c6')"></div></td>
-        <td><div id="c7" class="cell" onclick="makeTurn('c7')"></div></td>
-        <td><div id="c8" class="cell" onclick="makeTurn('c8')"></div></td>
+        <td><div id="c20" class="cell" onclick="makeTurn('c6')"></div></td>
+        <td><div id="c21" class="cell" onclick="makeTurn('c7')"></div></td>
+        <td><div id="c22" class="cell" onclick="makeTurn('c8')"></div></td>
       </tr>
     </table>
     <script>
       let currentPlayer = "X";
-      let gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+      let gameState = [[0, 0, 0],
+                       [0, 0, 0],
+                       [0, 0, 0]];
+      // gameState[1][1]
 
       function makeTurn(cell) {
         if (isEmptyCell(cell)) {
@@ -40,19 +43,22 @@
       }
 
       function isEmptyCell(cell) {
-        cellNum = cell.charAt(1);
-        return gameState[cellNum] == 0;
+        let row = cell.charAt(1);
+        let col = cell.charAt(2);
+        return gameState[row][col] == 0;
       }
 
       function placeX(cell) {
-        cellNum = cell.charAt(1);
-        gameState[cellNum] = currentPlayer;
+        let row = cell.charAt(1);
+        let col = cell.charAt(2);
+        gameState[row][col] = currentPlayer;
         document.getElementById(cell).className = "cell cross";
       }
 
       function placeO(cell) {
-        cellNum = cell.charAt(1);
-        gameState[cellNum] = currentPlayer;
+        let row = cell.charAt(1);
+        let col = cell.charAt(2);
+        gameState[row][col] = currentPlayer;
         document.getElementById(cell).className = "cell ring";
       }
     </script>
