@@ -30,7 +30,9 @@
                        [0, 0, 0]];
 
       function makeTurn(cell) {
+        console.log("[makeTurn] run isGameWon()");
         if (isGameWon(gameState)) {
+          alert("Game is won");
           return;
         }
 
@@ -52,12 +54,17 @@
       }
 
       function isGameWon(gameState) {
+        let winner = 0;
+        let isWon = false;
         console.log("[isGameWon] Check first row");
         if (gameState[0][0] === gameState[0][1] &&
-          gameState[0][1] === gameState[0][2]) {
+            gameState[0][1] === gameState[0][2]) {
+          winner = gameState[0][0];
+          if (winner === "X" || winner === "O") {
             console.log("[isGameWon] First row is filled");
             return true;
           }
+        }
       }
 
       function placeX(cell) {
