@@ -28,9 +28,12 @@
       let gameState = [[0, 0, 0],
                        [0, 0, 0],
                        [0, 0, 0]];
-      // gameState[1][1]
 
       function makeTurn(cell) {
+        if (isGameWon(gameState)) {
+          return;
+        }
+
         if (isEmptyCell(cell)) {
           if (currentPlayer == "X") {
             placeX(cell);
@@ -46,6 +49,15 @@
         let row = cell.charAt(1);
         let col = cell.charAt(2);
         return gameState[row][col] == 0;
+      }
+
+      function isGameWon(gameState) {
+        console.log("[isGameWon] Check first row");
+        if (gameState[0][0] === gameState[0][1] &&
+          gameState[0][1] === gameState[0][2]) {
+            console.log("[isGameWon] First row is filled");
+            return true;
+          }
       }
 
       function placeX(cell) {
