@@ -24,6 +24,8 @@
       </tr>
     </table>
     <script>
+      "use strict";
+
       let currentPlayer = "X";
       let gameState = [[0, 0, 0],
                        [0, 0, 0],
@@ -31,6 +33,7 @@
 
       function makeTurn(cell) {
         console.log("[makeTurn] run isGameWon()");
+        console.log(isGameWon(gameState));
         if (isGameWon(gameState)) {
           alert("Game is won");
           return;
@@ -57,6 +60,7 @@
         let winner = 0;
         let isWon = false;
         console.log("[isGameWon] Check first row");
+
         if (gameState[0][0] === gameState[0][1] &&
             gameState[0][1] === gameState[0][2]) {
           winner = gameState[0][0];
@@ -65,6 +69,7 @@
             return true;
           }
         }
+        return false;
       }
 
       function placeX(cell) {
