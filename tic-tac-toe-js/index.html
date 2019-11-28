@@ -25,6 +25,7 @@
     </table>
     <script>
       let currentPlayer = "X";
+      let gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
       function makeTurn(cell) {
         if (isEmptyCell(cell)) {
@@ -39,14 +40,19 @@
       }
 
       function isEmptyCell(cell) {
-        return document.getElementById(cell).className == 'cell';
+        cellNum = cell.charAt(1);
+        return gameState[cellNum] == 0;
       }
 
       function placeX(cell) {
+        cellNum = cell.charAt(1);
+        gameState[cellNum] = currentPlayer;
         document.getElementById(cell).className = "cell cross";
       }
 
       function placeO(cell) {
+        cellNum = cell.charAt(1);
+        gameState[cellNum] = currentPlayer;
         document.getElementById(cell).className = "cell ring";
       }
     </script>
