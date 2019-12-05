@@ -35,10 +35,6 @@
       function makeTurn(cell) {
         console.log("[makeTurn] run isGameWon()");
         console.log(isGameWon(gameState));
-        if (isGameWon(gameState)) {
-          alert("Game is won");
-          return;
-        }
 
         if (isEmptyCell(cell)) {
           if (currentPlayer == "X") {
@@ -48,6 +44,11 @@
             placeO(cell);
             currentPlayer = "X";
           }
+        }
+
+        if (isGameWon(gameState)) {
+          alert("Game is won");
+          return;
         }
       }
 
@@ -63,7 +64,7 @@
         }
         let isWon = checkRows(gameState);
         if (isWon) {
-          console.log("[isGameWon] player " + winner + "wins");
+          console.log("[isGameWon] player " + winner + " wins");
           return true;
         }
         return false;
@@ -75,17 +76,21 @@
           console.log('[checkRows] check row ' + i);
           let currentRow = gameState[i];
           let firstCell = currentRow[0];
+          let isWinner = true;
+          console.log('First cell at row ' + i + ' is ' + firstCell);
           for (let j = 1; j < currentRow.length; j++) {
-            console.log('[checkRows] check row ' + i + ' col ' + j);
+            console.log('[checkRows] check row ' + i + ' col ' + j + ' is ' + currentRow[j]);
             if (currentRow[j] !== firstCell) {
-              return false;
+              console.log('[checkRows] no winner at row ' + i);
+              isWinner = false;
             }
           }
-          if (firstCell !== 0) {
-              winner = firstCell;
-              return true;
+          if (isWinner && firstCell !== 0) {
+            winner = firstCell;
+            return true;
           }
         }
+        return false;
       }
 
       function placeX(cell) {
