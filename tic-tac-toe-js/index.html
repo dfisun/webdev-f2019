@@ -34,7 +34,7 @@
 
       function makeTurn(cell) {
         console.log("[makeTurn] run isGameWon()");
-        console.log(isGameWon(gameState));
+        console.log(isGameWon());
 
         if (isEmptyCell(cell)) {
           if (currentPlayer == "X") {
@@ -46,7 +46,7 @@
           }
         }
 
-        if (isGameWon(gameState)) {
+        if (isGameWon()) {
           alert("Game is won");
           return;
         }
@@ -58,11 +58,11 @@
         return gameState[row][col] == 0;
       }
 
-      function isGameWon(gameState) {
+      function isGameWon() {
         if (winner !== 0) {
           return true;
         }
-        let isWon = checkRows(gameState);
+        let isWon = checkRows() || checkCols();
         if (isWon) {
           console.log("[isGameWon] player " + winner + " wins");
           return true;
@@ -70,17 +70,35 @@
         return false;
       }
 
-      function checkRows(gameState) {
-        console.log('[checkRows]');
+      function checkRows() {
         for (let row = 0; row < gameState.length; row++) {
           let firstCell = gameState[row][0];
           let isWinner = true;
           for (let col = 1; col < gameState[row].length; col++) {
-            if (gameState[row][col] !== firstCell) {
+            if (gameState[row][col] !== firstCell ||
+                gameState[row][col] === 0) {
               isWinner = false;
             }
           }
-          if (isWinner && firstCell !== 0) {
+          if (isWinner) {
+            winner = firstCell;
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function checkCols() {
+        for (let col = 0; col < gameState[0].length; col++) {
+          let firstCell = gameState[0][col];
+          let isWinner = true;
+          for (let row = 1; row < gameState.length; row++) {
+            if (gameState[row][col] !== firstCell ||
+                gameState[row][col] === 0) {
+              isWinner = false;
+            }
+          }
+          if (isWinner) {
             winner = firstCell;
             return true;
           }
