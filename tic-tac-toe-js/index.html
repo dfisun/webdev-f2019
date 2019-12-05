@@ -72,16 +72,11 @@
 
       function checkRows(gameState) {
         console.log('[checkRows]');
-        for (let i = 0; i < gameState.length; i++) {
-          console.log('[checkRows] check row ' + i);
-          let currentRow = gameState[i];
-          let firstCell = currentRow[0];
+        for (let row = 0; row < gameState.length; row++) {
+          let firstCell = gameState[row][0];
           let isWinner = true;
-          console.log('First cell at row ' + i + ' is ' + firstCell);
-          for (let j = 1; j < currentRow.length; j++) {
-            console.log('[checkRows] check row ' + i + ' col ' + j + ' is ' + currentRow[j]);
-            if (currentRow[j] !== firstCell) {
-              console.log('[checkRows] no winner at row ' + i);
+          for (let col = 1; col < gameState[row].length; col++) {
+            if (gameState[row][col] !== firstCell) {
               isWinner = false;
             }
           }
