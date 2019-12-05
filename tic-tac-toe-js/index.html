@@ -27,6 +27,7 @@
       "use strict";
 
       let currentPlayer = "X";
+      let winner = 0;
       let gameState = [[0, 0, 0],
                        [0, 0, 0],
                        [0, 0, 0]];
@@ -57,19 +58,34 @@
       }
 
       function isGameWon(gameState) {
-        let winner = 0;
-        let isWon = false;
-        console.log("[isGameWon] Check first row");
-
-        if (gameState[0][0] === gameState[0][1] &&
-            gameState[0][1] === gameState[0][2]) {
-          winner = gameState[0][0];
-          if (winner === "X" || winner === "O") {
-            console.log("[isGameWon] First row is filled");
-            return true;
-          }
+        if (winner !== 0) {
+          return true;
+        }
+        let isWon = checkRows(gameState);
+        if (isWon) {
+          console.log("[isGameWon] player " + winner + "wins");
+          return true;
         }
         return false;
+      }
+
+      function checkRows(gameState) {
+        console.log('[checkRows]');
+        for (let i = 0; i < gameState.length; i++) {
+          console.log('[checkRows] check row ' + i);
+          let currentRow = gameState[i];
+          let firstCell = currentRow[0];
+          for (let j = 1; j < currentRow.length; j++) {
+            console.log('[checkRows] check row ' + i + ' col ' + j);
+            if (currentRow[j] !== firstCell) {
+              return false;
+            }
+          }
+          if (firstCell !== 0) {
+              winner = firstCell;
+              return true;
+          }
+        }
       }
 
       function placeX(cell) {
