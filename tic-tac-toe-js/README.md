@@ -1,4 +1,4 @@
-1. Turn (X starts)  
+1. Make turn (X starts)  
 2. Check for win
     a. Check rows
     b. Check columns
