@@ -24,9 +24,8 @@
       </tr>
     </table>
     <script>
-      "use strict";
-
-      let currentPlayer = "X";
+      const computerPlayer = "O";
+      const currentPlayer = "X";
       let winner = 0;
       let gameState = [[0, 0, 0],
                        [0, 0, 0],
@@ -37,18 +36,33 @@
         console.log(isGameWon());
 
         if (isEmptyCell(cell)) {
-          if (currentPlayer == "X") {
-            placeX(cell);
-            currentPlayer = "O";
-          } else {
-            placeO(cell);
-            currentPlayer = "X";
-          }
+          placeX(cell);
+        } else {
+          return;
         }
 
         if (isGameWon()) {
           alert("Game is won");
           return;
+        }
+        
+        makeComputerTurn();
+        console.log(gameState);
+      }
+
+      function makeComputerTurn() {
+        let turnCompleted = false;
+        let row;
+        let col;
+
+        while (!turnCompleted) {
+          row = Math.floor(Math.random() * (gameState.length + 1));
+          col = Math.floor(Math.random() * (gameState[0].length + 1));
+          
+          if (gameState[row][col] === 0) {
+            gameState[row][col] = computerPlayer;
+            turnCompleted = true;
+          }
         }
       }
 
