@@ -25,7 +25,7 @@
     </table>
     <script>
       const computerPlayer = "O";
-      const currentPlayer = "X";
+      const humanPlayer = "X";
       let winner = 0;
       let gameState = [[0, 0, 0],
                        [0, 0, 0],
@@ -33,7 +33,10 @@
 
       function makeTurn(cell) {
         console.log("[makeTurn] run isGameWon()");
-        console.log(isGameWon());
+        if (isGameWon()) {
+          alert("You lose")
+          return;
+        }
 
         if (isEmptyCell(cell)) {
           placeX(cell);
@@ -42,7 +45,7 @@
         }
 
         if (isGameWon()) {
-          alert("Game is won");
+          alert("You win");
           return;
         }
         
@@ -56,11 +59,12 @@
         let col;
 
         while (!turnCompleted) {
-          row = Math.floor(Math.random() * (gameState.length + 1));
-          col = Math.floor(Math.random() * (gameState[0].length + 1));
+          row = Math.floor(Math.random() * (gameState.length));
+          col = Math.floor(Math.random() * (gameState[0].length));
           
           if (gameState[row][col] === 0) {
             gameState[row][col] = computerPlayer;
+            placeO('c' + row + col);
             turnCompleted = true;
           }
         }
@@ -123,14 +127,14 @@
       function placeX(cell) {
         let row = cell.charAt(1);
         let col = cell.charAt(2);
-        gameState[row][col] = currentPlayer;
+        gameState[row][col] = "X";
         document.getElementById(cell).className = "cell cross";
       }
 
       function placeO(cell) {
         let row = cell.charAt(1);
         let col = cell.charAt(2);
-        gameState[row][col] = currentPlayer;
+        gameState[row][col] = "O";
         document.getElementById(cell).className = "cell ring";
       }
     </script>
