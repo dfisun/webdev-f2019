@@ -26,6 +26,7 @@
     <script>
       const computerPlayer = "O";
       const humanPlayer = "X";
+
       let winner = 0;
       let gameState = [[0, 0, 0],
                        [0, 0, 0],
@@ -34,7 +35,6 @@
       function makeTurn(cell) {
         console.log("[makeTurn] run isGameWon()");
         if (isGameWon()) {
-          alert("You lose")
           return;
         }
 
@@ -43,14 +43,16 @@
         } else {
           return;
         }
-
         if (isGameWon()) {
           alert("You win");
           return;
         }
         
         makeComputerTurn();
-        console.log(gameState);
+        if (isGameWon()) {
+          alert("You lose");
+          return;
+        }
       }
 
       function makeComputerTurn() {
